@@ -1,8 +1,9 @@
 import express from 'express';
 import cors from 'cors'
+import configuration from './config';
 
 const app = express();
-const port = 5000;
+const port = configuration.port || 5000;
 
 const corsOptions = {
     origin: 'http://localhost:5174',
@@ -16,5 +17,6 @@ app.get('/', (req, res) => {
   });
 
 app.listen(port, ()=>{
-    console.log(`Server is running at http://localhost:${port}`)
+    console.log(`Server is running at http://localhost:${port}`);
+    
 })
