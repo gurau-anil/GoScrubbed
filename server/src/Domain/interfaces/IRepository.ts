@@ -1,6 +1,6 @@
-interface IRepository<T> {
-    findById(id: string): Promise<T | null>;
-    findAll(): Promise<T[]>;
+export default interface IRepository<T> {
+    getById(id: string): Promise<T | null>;
+    get(): Promise<T[]>;
     create(item: T): Promise<T>;
     update(id: string, item: T): Promise<T | null>;
     delete(id: string): Promise<boolean>;

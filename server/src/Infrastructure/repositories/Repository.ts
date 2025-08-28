@@ -1,33 +1,41 @@
-import Customer from "../../Domain/entities/Customer";
-import ICustomerRepository from "../../Domain/interfaces/ICustomerRepository";
+import {IBaseEntity} from "../../Domain/entities/BaseEntity";
+import IRepository from "../../Domain/interfaces/IRepository";
 
-class Repository implements IRepository<T> {
-    private customers: Customer[] = [];
-
-    async findById(id: string): Promise<Customer | null> {
-        return this.customers.find(customer => customer.id === id) || null;
+export default class Repository<IBaseEntity> implements IRepository<IBaseEntity> {
+    getById(id: string): Promise<IBaseEntity | null> {
+        console.log("Inside repo")
+        //call mongo db
+        throw new Error("Method not implemented.");
     }
-
-    async findAll(): Promise<Customer[]> {
-        return this.customers;
+    get(): Promise<IBaseEntity[]> {
+        throw new Error("Method not implemented.");
     }
-
-    async create(customer: Customer): Promise<Customer> {
-        this.customers.push(customer);
-        return customer;
+    create(item: IBaseEntity): Promise<IBaseEntity> {
+        throw new Error("Method not implemented.");
     }
-
-    async update(id: string, customer: Customer): Promise<Customer | null> {
-        const index = this.customers.findIndex(c => c.id === id);
-        if (index === -1) return null;
-        this.customers[index] = customer;
-        return customer;
+    update(id: string, item: IBaseEntity): Promise<IBaseEntity | null> {
+        throw new Error("Method not implemented.");
     }
+    delete(id: string): Promise<boolean> {
+        throw new Error("Method not implemented.");
+    }
+}
 
-    async delete(id: string): Promise<boolean> {
-        const index = this.customers.findIndex(c => c.id === id);
-        if (index === -1) return false;
-        this.customers.splice(index, 1);
-        return true;
+class RepositoryForPostgres implements IRepository<IBaseEntity> {
+    getById(id: string): Promise<IBaseEntity | null> {
+        //call postgres sql
+        throw new Error("Method not implemented.");
+    }
+    get(): Promise<IBaseEntity[]> {
+        throw new Error("Method not implemented.");
+    }
+    create(item: IBaseEntity): Promise<IBaseEntity> {
+        throw new Error("Method not implemented.");
+    }
+    update(id: string, item: IBaseEntity): Promise<IBaseEntity | null> {
+        throw new Error("Method not implemented.");
+    }
+    delete(id: string): Promise<boolean> {
+        throw new Error("Method not implemented.");
     }
 }
