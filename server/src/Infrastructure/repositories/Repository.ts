@@ -1,6 +1,8 @@
 import {IBaseEntity} from "../../Domain/entities/BaseEntity";
 import IRepository from "../../Domain/interfaces/IRepository";
 
+//Infrastructure layer can use Domain layer and Application layer.
+//here it implements the IRepository interface.
 export default class Repository<IBaseEntity> implements IRepository<IBaseEntity> {
     getById(id: string): Promise<IBaseEntity | null> {
         console.log("Inside repo")
